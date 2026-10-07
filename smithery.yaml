@@ -1,0 +1,14 @@
+startCommand:
+  type: "stdio"
+  configSchema:
+    type: "object"
+    properties:
+      X402_RECEIPT:
+        type: "string"
+        description: "Solana USDC tx signature or NanoEmpire trial token"
+  commandFunction: |-
+    (config) => ({
+      command: "python",
+      args: ["server.py"],
+      env: config.X402_RECEIPT ? { X402_RECEIPT: config.X402_RECEIPT } : {}
+    })
